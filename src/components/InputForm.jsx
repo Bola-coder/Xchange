@@ -3,25 +3,25 @@ import "./inputForm.css";
 import { InputContext } from "./InputContext";
 
 const InputForm = ({ codes }) => {
+  const App_Id = "04298664f7e3411b928609545f9828ce";
   const [amount, setAmount] = useContext(InputContext);
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
-
   const getAmount = (e) => {
     setAmount(e.target.value);
   };
 
-  const handleFrom = (e) => {
-    setFrom(e.target.value);
-    console.log(from);
+  const convertCurrency = () => {
+    const a = document.getElementById("from");
+    const b = document.getElementById("to");
+    let fromStr = a.value;
+    let toStr = b.value;
+    console.log(fromStr);
+    console.log(toStr);
+    fetch(
+      `https://openexchangerates.org/api/convert/${amount}/${fromStr}/${toStr}?app_id=${App_Id}`
+    )
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
-
-  const handleTo = (e) => {
-    setTo(e.target.value);
-    console.log(to);
-  };
-
-  const convertCurrency = () => {};
   return (
     <div className="form-group">
       <div className="input">
@@ -30,7 +30,7 @@ const InputForm = ({ codes }) => {
       </div>
       <div className="selects">
         <label>From</label>
-        <select id="from" onChange={handleFrom}>
+        <select id="from">
           {codes.map((code) => (
             <option value={code} key={code}>
               {code}
@@ -38,7 +38,7 @@ const InputForm = ({ codes }) => {
           ))}
         </select>
         <label>To</label>
-        <select name="to" onChange={handleTo}>
+        <select id="to">
           {codes.map((code) => (
             <option value={code} key={code}>
               {code}
@@ -49,7 +49,6 @@ const InputForm = ({ codes }) => {
       <button type="submit" onClick={convertCurrency}>
         Convert
       </button>
-      <p>{process.env.API_KEY}</p>
     </div>
   );
 };
