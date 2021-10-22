@@ -1,12 +1,27 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./inputForm.css";
 import { InputContext } from "./InputContext";
 
-const InputForm = () => {
+const InputForm = ({ codes }) => {
   const [amount, setAmount] = useContext(InputContext);
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+
   const getAmount = (e) => {
     setAmount(e.target.value);
   };
+
+  const handleFrom = (e) => {
+    setFrom(e.target.value);
+    console.log(from);
+  };
+
+  const handleTo = (e) => {
+    setTo(e.target.value);
+    console.log(to);
+  };
+
+  const convertCurrency = () => {};
   return (
     <div className="form-group">
       <div className="input">
@@ -15,19 +30,26 @@ const InputForm = () => {
       </div>
       <div className="selects">
         <label>From</label>
-        <select name="from" className="from">
-          <option value="usd">USD</option>
-          <option value="ngr">NGR</option>
-          <option value="eur">EUR</option>
+        <select id="from" onChange={handleFrom}>
+          {codes.map((code) => (
+            <option value={code} key={code}>
+              {code}
+            </option>
+          ))}
         </select>
         <label>To</label>
-        <select name="to" className="to">
-          <option value="usd">USD</option>
-          <option value="ngr">NGR</option>
-          <option value="eur">EUR</option>
+        <select name="to" onChange={handleTo}>
+          {codes.map((code) => (
+            <option value={code} key={code}>
+              {code}
+            </option>
+          ))}
         </select>
       </div>
-      <p>{amount}</p>
+      <button type="submit" onClick={convertCurrency}>
+        Convert
+      </button>
+      <p>{process.env.API_KEY}</p>
     </div>
   );
 };
