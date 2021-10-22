@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -5,9 +6,18 @@
 }
 .App {
   text-align: center;
-  background: rgb(83, 78, 78);
+  background: rgb(7, 29, 51);
+  font-family: "Fira Code", monospace;
+  height: 100vh;
 }
 
-.App > h1 {
+.app-text {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.app-text h1,
+em {
+  color: #fff;
   color: #fff;
 }
