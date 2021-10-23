@@ -7,6 +7,14 @@
 .result {
   margin-top: 20%;
   margin: 0 auto;
-  width: 75%;
+  width: 50%;
   background-color: #fff;
+  height: 60px;
+}
+
+p {
+  padding: 10px;
+  font-size: 1.5rem;
+  color: rgb(56, 29, 180);
+  font-weight: bold;
 }

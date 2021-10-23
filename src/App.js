@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { InputProvider } from "./components/InputContext";
 import InputForm from "./components/InputForm";
-import Result from "./components/Result";
 // import Test from "./components/test";
 
 function App() {
@@ -25,7 +24,6 @@ function App() {
       </div>
       <InputProvider>
         <InputForm codes={countryCode} />
-        <Result />
       </InputProvider>
     </div>
   );

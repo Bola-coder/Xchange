@@ -1,10 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import "./inputForm.css";
+import Result from "./Result";
 import { InputContext } from "./InputContext";
 
 const InputForm = ({ codes }) => {
-  const App_Id = "04298664f7e3411b928609545f9828ce";
+  //   const App_Id = "04298664f7e3411b928609545f9828ce";  openEchange Api
+  // const url = `http://openexchangerates.org/api/convert/${amount}/${fromStr}/${toStr}?app_id=${App_Id}`
+  const API_KEY = "ef29690a90a1ed369a862e998d43104c";
   const [amount, setAmount] = useContext(InputContext);
+  const [result, setResult] = useState(null);
   const getAmount = (e) => {
     setAmount(e.target.value);
   };
@@ -14,13 +18,13 @@ const InputForm = ({ codes }) => {
     const b = document.getElementById("to");
     let fromStr = a.value;
     let toStr = b.value;
-    console.log(fromStr);
-    console.log(toStr);
-    fetch(
-      `https://openexchangerates.org/api/convert/${amount}/${fromStr}/${toStr}?app_id=${App_Id}`
-    )
+    const url = `https://api.currencyscoop.com/v1/convert?api_key=${API_KEY}&from=${fromStr}&to=${toStr}&amount=${amount}`;
+    fetch(url)
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        setResult(data.response);
+        setAmount(0);
+      });
   };
   return (
     <div className="form-group">
@@ -49,6 +53,7 @@ const InputForm = ({ codes }) => {
       <button type="submit" onClick={convertCurrency}>
         Convert
       </button>
+      {result && <Result result={result} />}
     </div>
   );
 };
