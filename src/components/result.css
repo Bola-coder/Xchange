@@ -9,7 +9,6 @@
   margin: 0 auto;
   width: 50%;
   background-color: #fff;
-  height: 60px;
 }
 
 p {
@@ -17,4 +16,15 @@ p {
   font-size: 1.5rem;
   color: rgb(56, 29, 180);
   font-weight: bold;
+}
+
+@media screen and (max-width: 425px) {
+  .result {
+    margin-top: 10%;
+    width: 90%;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
 }

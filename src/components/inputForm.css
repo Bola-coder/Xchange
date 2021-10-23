@@ -75,3 +75,19 @@ button:hover {
   background-color: rgb(56, 29, 180);
   color: #fff;
 }
+
+@media screen and (max-width: 425px) {
+  .input {
+    min-width: 70%;
+    padding: 20px;
+  }
+  .input input {
+    width: 80%;
+  }
+  .selects {
+    min-width: 90%;
+  }
+  .selects select {
+    width: 75px;
+  }
+}
